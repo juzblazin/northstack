@@ -8,59 +8,41 @@ export const brand = {
   name: 'Thamada',
   tagline: 'AI-powered commerce for a more human world.',
   heroTitle: ['/ ធម្មតា /', 'Rooted in culture,', 'Built for the future.'],
-  heroLead: 'Thamada builds AI-powered storefronts that adapt, converse, and grow',
-  heroLeadStrong: 'with your customers.',
+  heroLead: 'Thamada Labs is a creative incubator engineering the intersection of ancient craft, generative code, and',
+  heroLeadStrong: 'future digital experiences.',
   copyright: '© 2026 Thamada Inc.',
 }
 
-export type NavGroup = { label: string; items: { title: string; desc?: string }[] }
+export type NavGroup = { label: string; blurb?: string; items?: { title: string; desc?: string }[] }
 export const nav: NavGroup[] = [
   {
-    label: 'Product',
+    label: 'Works',
+    blurb: 'Case studies, apps and live code from the lab.',
     items: [
-      { title: 'Overview', desc: 'The adaptive storefront, top to bottom.' },
-      { title: 'Adaptive storefronts', desc: 'Layouts that change for every shopper.' },
-      { title: 'Shopping assistant', desc: 'Conversations in your brand voice.' },
-      { title: 'Live layouts', desc: 'Products and pages picked in real time.' },
-      { title: 'Insights', desc: 'See which experiences actually sell.' },
-      { title: 'Campaign pages', desc: 'Drop and launch pages, made in chat.' },
-      { title: 'Brand voice', desc: 'Guardrails that keep every reply on-brand.' },
-      { title: 'API & SDK', desc: 'Bring Thamada into any stack.' },
+      { title: 'Case studies', desc: 'How ancient craft became digital experiences.' },
+      { title: 'Apps', desc: 'Products we designed, built and shipped.' },
+      { title: 'Live code', desc: 'Running builds you can open and play with.' },
+      { title: 'Storefronts', desc: 'Commerce experiences rooted in culture.' },
+      { title: 'Brand worlds', desc: 'Identity systems with motion and code.' },
+      { title: 'All works', desc: 'The full catalogue, newest first.' },
     ],
   },
   {
-    label: 'Solutions',
+    label: 'Lab Notes',
+    blurb: 'Deep dives, essays and design thoughts.',
     items: [
-      { title: 'Fashion & apparel', desc: 'Styling help on every visit.' },
-      { title: 'Beauty', desc: 'Shade matching and routines that convert.' },
-      { title: 'Home & living', desc: 'Rooms, sizes and delivery questions handled.' },
-      { title: 'Food & beverage', desc: 'Subscriptions that grow themselves.' },
-      { title: 'DTC brands', desc: 'Grow without growing headcount.' },
-      { title: 'Agencies', desc: 'Launch adaptive stores for clients.' },
+      { title: 'Deep dives', desc: 'How our experiments work, step by step.' },
+      { title: 'Essays', desc: 'On culture, craft and technology.' },
+      { title: 'Design thoughts', desc: 'Short notes from the studio floor.' },
+      { title: 'Process', desc: 'Sketches, prototypes and dead ends.' },
+      { title: 'Field notes', desc: 'Research trips and craft archives.' },
+      { title: 'Newsletter', desc: 'New notes in your inbox each month.' },
     ],
   },
-  {
-    label: 'Partners',
-    items: [
-      { title: 'Partner program', desc: 'Build and run Thamada for your clients.' },
-      { title: 'Become a partner', desc: 'Apply in a few minutes.' },
-      { title: 'Agency directory', desc: 'Find a certified Thamada partner.' },
-    ],
-  },
-  {
-    label: 'Integrations',
-    items: [
-      { title: 'Shopify' }, { title: 'Stripe' }, { title: 'HubSpot' }, { title: 'Mailchimp' },
-      { title: 'Browse all integrations', desc: 'Your catalog, payments, CRM and support tools.' },
-    ],
-  },
-  {
-    label: 'Resources',
-    items: [
-      { title: 'What is adaptive commerce' }, { title: 'Blog' }, { title: 'Help Center' },
-      { title: 'Developer docs' }, { title: 'FAQ' }, { title: 'Brand guidelines' },
-    ],
-  },
+  { label: 'Experiments' },
+  { label: 'Artifacts' },
+  { label: 'Syndicate' },
+  { label: 'Manifesto' },
 ]
 
 export const heroAvatars = [

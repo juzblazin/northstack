@@ -113,7 +113,7 @@ export default function Hero() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.4, ease }}
             className="flex flex-col gap-6 lg:max-w-[440px] lg:shrink-0 lg:items-end lg:pb-3">
             <p className="text-[18px] leading-snug text-ink-soft lg:text-right">{brand.heroLead}<br /><strong className="font-semibold text-ink">{brand.heroLeadStrong}</strong></p>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex flex-col gap-4 lg:items-end">
               <div className="flex w-fit items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1.5 backdrop-blur">
                 {heroAvatars.map((a, i) => (
                   <motion.span key={i} initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7 + i * 0.07, type: 'spring', stiffness: 300, damping: 18 }}>
@@ -122,9 +122,11 @@ export default function Hero() {
                 ))}
                 <span className="flex size-[34px] items-center justify-center rounded-full border border-dashed border-white/25 text-white/60"><Plus className="size-4" /></span>
               </div>
-              <Button size="lg" arrow>Get early access</Button>
+              <div className="flex flex-wrap gap-3">
+                <Button size="lg" arrow>Explore Experiments</Button>
+                <Button size="lg" variant="outline">Collaborate with us</Button>
+              </div>
             </div>
-            <p className="text-[14px] text-ink-soft lg:text-right">Or <a href="#" className="font-semibold text-ink underline-offset-4 hover:underline">book a demo</a></p>
           </motion.div>
         </div>
 

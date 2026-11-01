@@ -15,7 +15,7 @@ export default function Nav() {
     window.addEventListener('scroll', on, { passive: true })
     return () => window.removeEventListener('scroll', on)
   }, [])
-  const group = nav.find((g) => g.label === open)
+  const group = nav.find((g) => g.label === open && g.items)
 
   return (
     <header className="fixed inset-x-0 top-0 z-50" onMouseLeave={() => setOpen(null)}>
@@ -23,19 +23,20 @@ export default function Nav() {
         <div className="mx-auto flex h-16 max-w-[1440px] items-center px-5 sm:px-10 lg:px-[100px]">
           <Logo className="text-[20px]" />
           <nav className="ml-12 hidden items-center gap-1 lg:flex">
-            {nav.map((g) => (
+            {nav.map((g) => g.items ? (
               <button key={g.label} type="button" onMouseEnter={() => setOpen(g.label)} onClick={() => setOpen(open === g.label ? null : g.label)}
                 className={clsx('flex items-center gap-1.5 rounded-lg px-3 py-2 text-[14px] text-ink/80 transition hover:text-ink', open === g.label && 'text-ink')}>
                 {g.label}
                 <ChevronDown className={clsx('size-3.5 transition-transform', open === g.label && 'rotate-180')} />
               </button>
+            ) : (
+              <a key={g.label} href="#" onMouseEnter={() => setOpen(null)} className="rounded-lg px-3 py-2 text-[14px] text-ink/80 transition hover:text-ink">{g.label}</a>
             ))}
-            <a href="#pricing" onMouseEnter={() => setOpen(null)} className="px-3 py-2 text-[14px] text-ink/80 hover:text-ink">Pricing</a>
           </nav>
           <div className="ml-auto hidden items-center gap-2 lg:flex">
-            <Button variant="ghost" className="font-semibold">Sign in</Button>
-            <Button variant="outline">Book a demo</Button>
-            <Button arrow>Get early access</Button>
+            <Button variant="ghost" className="font-semibold">Archive</Button>
+            <Button variant="outline">Drop a Line</Button>
+            <Button arrow>Enter the Lab</Button>
           </div>
           <button type="button" className="ml-auto rounded-lg p-2 lg:hidden" aria-label="Menu" onClick={() => setMobile((m) => !m)}>
             {mobile ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -50,10 +51,10 @@ export default function Nav() {
             <div className="mx-auto grid max-w-[1440px] grid-cols-4 gap-x-6 gap-y-2 px-[100px] py-8">
               <div className="col-span-1 pr-6">
                 <div className="text-[11px] font-semibold tracking-[0.14em] text-muted uppercase">{group.label}</div>
-                <p className="display-lg mt-3 text-[26px]">Intelligent commerce for a more human world.</p>
+                <p className="display-lg mt-3 text-[26px]">{group.blurb}</p>
               </div>
               <div className="col-span-3 grid grid-cols-3 gap-2">
-                {group.items.map((it) => (
+                {group.items?.map((it) => (
                   <a key={it.title} href="#" className="rounded-xl p-3 transition hover:bg-white/5">
                     <div className="text-[14px] font-semibold">{it.title}</div>
                     {it.desc && <div className="mt-1 text-[13px] text-ink-soft">{it.desc}</div>}
@@ -70,12 +71,12 @@ export default function Nav() {
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden border-b border-line bg-canvas lg:hidden">
             <div className="flex flex-col gap-1 px-5 py-4">
-              {[...nav.map((g) => g.label), 'Pricing'].map((l) => (
+              {[...nav.map((g) => g.label), 'Archive'].map((l) => (
                 <a key={l} href="#" className="rounded-lg px-2 py-3 text-[16px] font-medium">{l}</a>
               ))}
               <div className="mt-3 grid grid-cols-2 gap-2">
-                <Button variant="outline">Book a demo</Button>
-                <Button arrow>Get early access</Button>
+                <Button variant="outline">Drop a Line</Button>
+                <Button arrow>Enter the Lab</Button>
               </div>
             </div>
           </motion.div>
