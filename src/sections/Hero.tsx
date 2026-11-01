@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import { Bell, ChevronDown, ChevronRight, Grid2x2, Hash, Lock, MessageCircle, PenSquare, Plus, Search, Users } from 'lucide-react'
 import { useRef } from 'react'
 import { brand, face, heroAvatars, mark, useCases } from '../data'
+import WaveField from '../components/WaveField'
 import { AppPanel, ChatThread } from '../components/mockups'
 import { Avatar, Button, HavenMark } from '../components/ui'
 
@@ -92,6 +93,10 @@ export default function Hero() {
         <motion.img src="/assets/hero-dancer.jpg" alt="Dancer in traditional Khmer costume, tinted Thamada purple" style={{ y: imgY }}
           initial={{ opacity: 0, scale: 1.06 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.6, ease }}
           className="absolute inset-0 size-full object-cover object-[55%_0%]" />
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.8, delay: 0.4, ease }}
+          className="pointer-events-none absolute inset-0 mix-blend-screen">
+          <WaveField className="size-full" />
+        </motion.div>
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-canvas/70 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-canvas via-canvas/60 to-transparent" />
       </div>
