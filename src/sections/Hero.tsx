@@ -107,7 +107,8 @@ export default function Hero() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.25, ease }}
             className="display-xl max-w-[820px] text-[46px] sm:text-[64px] lg:text-[76px]">
-            {brand.heroTitle[0]}<br />for a <span className="text-grad">more human world.</span>
+            <span lang="km" className="mb-3 block font-khmer text-[56px] leading-[1.35] font-semibold tracking-normal sm:text-[76px] lg:text-[92px]">{brand.heroTitle[0]}</span>
+            {brand.heroTitle[1]}<br /><span className="text-grad">{brand.heroTitle[2]}</span>
           </motion.h1>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.4, ease }}
             className="flex flex-col gap-6 lg:max-w-[440px] lg:shrink-0 lg:items-end lg:pb-3">

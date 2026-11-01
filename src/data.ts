@@ -7,7 +7,7 @@ export const mark = '/assets/thamada-mark.svg'
 export const brand = {
   name: 'Thamada',
   tagline: 'AI-powered commerce for a more human world.',
-  heroTitle: ['Intelligent commerce', 'for a more human world.'],
+  heroTitle: ['/ ធម្មតា /', 'Rooted in culture,', 'Built for the future.'],
   heroLead: 'Thamada builds AI-powered storefronts that adapt, converse, and grow',
   heroLeadStrong: 'with your customers.',
   copyright: '© 2026 Thamada Inc.',
