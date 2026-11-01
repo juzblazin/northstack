@@ -89,10 +89,11 @@ export default function Hero() {
 
   return (
     <section className="relative">
-      <div ref={ref} className="relative h-[460px] overflow-hidden bg-[#3a2475] sm:h-[560px] lg:h-[640px]">
+      <div ref={ref} className="relative h-[460px] overflow-hidden bg-canvas sm:h-[560px] lg:h-[640px]">
         <motion.img src="/assets/hero-dancer.jpg" alt="Dancer in traditional Khmer costume, tinted Thamada purple" style={{ y: imgY }}
           initial={{ opacity: 0, scale: 1.06 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.6, ease }}
           className="absolute inset-0 size-full object-cover object-[55%_0%]" />
+        <div className="absolute inset-0 bg-[radial-gradient(70%_80%_at_55%_35%,rgba(10,8,22,.35),rgba(10,8,22,.75))]" />
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.8, delay: 0.4, ease }}
           className="pointer-events-none absolute inset-0 mix-blend-screen">
           <WaveField className="size-full" />
