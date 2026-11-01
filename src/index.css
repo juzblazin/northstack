@@ -1,1 +1,104 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --font-display: "Bricolage Grotesque Variable", "Geist Variable", sans-serif;
+
+  --color-canvas: #f5efe4;
+  --color-canvas-2: #efe7d8;
+  --color-surface: #fcf9f3;
+  --color-ink: #1b1712;
+  --color-ink-soft: #564c42;
+  --color-muted: #9a8b7a;
+  --color-tan: #a7845c;
+  --color-slate: #4c5f63;
+  --color-line: #3a251921;
+  --color-agent: #045c45;
+  --color-agent-surface: #dde7e3;
+  --color-app-tint: #e6fbe5;
+  --color-app-tint-soft: #f1fde8;
+  --color-app-border: #b9dcae;
+  --color-sage: #dcdcc6;
+  --color-peach: #ead3bf;
+
+  --animate-marquee: marquee var(--marquee-duration, 60s) linear infinite;
+  --animate-marquee-reverse: marquee-reverse var(--marquee-duration, 60s) linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Paper grain over the whole page */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .25 0 0 0 0 .15 0 0 0 2.4 -1.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+}
+
+.paper {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='720' height='720'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .32 0 0 0 0 .18 0 0 0 1 -.4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)' opacity='.2'/%3E%3C/svg%3E");
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 88;
+}
+
+.display-xl { font-family: var(--font-display); font-weight: 450; letter-spacing: -0.035em; line-height: 1.03; }
+.display-lg { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.025em; line-height: 1.04; }
+
+/* Scalloped bottom edge of the hero image */
+.wave-bottom {
+  --r: 14px;
+  -webkit-mask:
+    radial-gradient(var(--r) at 50% calc(100% - var(--r) * 0.35), #000 99%, #0000 101%) 50% 100% / calc(var(--r) * 2.6) calc(var(--r) * 2) repeat-x,
+    linear-gradient(#000 0 0) top / 100% calc(100% - var(--r) * 0.9) no-repeat;
+  mask:
+    radial-gradient(var(--r) at 50% calc(100% - var(--r) * 0.35), #000 99%, #0000 101%) 50% 100% / calc(var(--r) * 2.6) calc(var(--r) * 2) repeat-x,
+    linear-gradient(#000 0 0) top / 100% calc(100% - var(--r) * 0.9) no-repeat;
+}
+
+.wavy-line {
+  height: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='12' viewBox='0 0 40 12'%3E%3Cpath d='M0 6 Q10 0 20 6 T40 6' fill='none' stroke='%233a2519' stroke-opacity='.16' stroke-width='1.2'/%3E%3C/svg%3E") repeat-x center / 40px 12px;
+}
+
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.mask-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
+  mask-image: linear-gradient(to bottom, #000 70%, transparent);
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee, .animate-marquee-reverse { animation: none; }
+}
