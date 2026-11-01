@@ -1,25 +1,25 @@
 import clsx from 'clsx'
 import { motion } from 'motion/react'
-import type { ReactNode } from 'react'
+import { ArrowRight } from 'lucide-react'
+import type { CSSProperties, ReactNode } from 'react'
 
-export function HavenMark({ className }: { className?: string }) {
+const petal = 'M50 46C44 40 33 34 33 24C33 15 42 11 50 3C58 11 67 15 67 24C67 34 56 40 50 46Z'
+export function BrandMark({ className, style }: { className?: string; style?: CSSProperties }) {
   return (
-    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
+    <svg viewBox="0 0 100 100" className={className} style={style} aria-hidden="true">
       <g fill="currentColor">
-        <path d="M14 2c0 6.6-5.4 12-12 12V4a2 2 0 0 1 2-2h10Z" />
-        <path d="M18 2h10a2 2 0 0 1 2 2v10c-6.6 0-12-5.4-12-12Z" />
-        <path d="M2 18c6.6 0 12 5.4 12 12H4a2 2 0 0 1-2-2V18Z" />
-        <path d="M30 18v10a2 2 0 0 1-2 2H18c0-6.6 5.4-12 12-12Z" />
+        {[0, 90, 180, 270].map((r) => <path key={r} d={petal} transform={`rotate(${r} 50 50)`} />)}
       </g>
     </svg>
   )
 }
+export const HavenMark = BrandMark
 
 export function Logo({ className, markClass }: { className?: string; markClass?: string }) {
   return (
-    <a href="#" className={clsx('flex items-center gap-1.5 font-display font-semibold tracking-tight text-ink', className)}>
-      <HavenMark className={clsx('size-[0.8em]', markClass)} />
-      <span>Haven</span>
+    <a href="#" className={clsx('flex items-center gap-[0.35em] font-display font-extrabold tracking-[-0.01em] text-ink uppercase', className)}>
+      <BrandMark className={clsx('size-[1.15em]', markClass)} />
+      <span>Thamada</span>
     </a>
   )
 }
@@ -35,23 +35,25 @@ const DownloadIcon = () => (
   </svg>
 )
 
-type BtnProps = { children: ReactNode; variant?: 'dark' | 'outline' | 'ghost'; size?: 'sm' | 'lg'; className?: string; href?: string; apple?: boolean; download?: boolean }
-export function Button({ children, variant = 'dark', size = 'sm', className, href = '#', apple, download }: BtnProps) {
+type BtnProps = { children: ReactNode; variant?: 'dark' | 'outline' | 'ghost' | 'light'; size?: 'sm' | 'lg'; className?: string; href?: string; apple?: boolean; download?: boolean; arrow?: boolean }
+export function Button({ children, variant = 'dark', size = 'sm', className, href = '#', apple, download, arrow }: BtnProps) {
   return (
     <a
       href={href}
       className={clsx(
-        'group inline-flex items-center justify-center gap-2 rounded-[10px] font-medium whitespace-nowrap transition-all duration-200 active:scale-[0.98]',
+        'group inline-flex items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap transition-all duration-200 active:scale-[0.98]',
         size === 'sm' ? 'h-10 px-4 text-[14px]' : 'h-[50px] px-6 text-[15px]',
-        variant === 'dark' && 'bg-ink text-white shadow-[0_1px_0_rgba(255,255,255,.15)_inset,0_6px_16px_-6px_rgba(27,23,18,.5)] hover:bg-[#2b251e]',
-        variant === 'outline' && 'border border-line bg-white/70 text-ink backdrop-blur hover:bg-white',
-        variant === 'ghost' && 'text-ink hover:bg-black/5',
+        variant === 'dark' && 'bg-primary text-white shadow-[0_1px_0_rgba(255,255,255,.25)_inset,0_10px_30px_-8px_rgba(127,92,255,.75)] hover:bg-[#8d6dff] hover:shadow-[0_1px_0_rgba(255,255,255,.25)_inset,0_14px_36px_-8px_rgba(127,92,255,.9)]',
+        variant === 'outline' && 'border border-white/15 bg-white/5 text-white backdrop-blur hover:border-white/30 hover:bg-white/10',
+        variant === 'ghost' && 'text-white hover:bg-white/10',
+        variant === 'light' && 'bg-white text-violet hover:bg-lavender',
         className,
       )}
     >
       {apple && <AppleIcon />}
       {children}
       {download && <span className="transition-transform group-hover:translate-y-0.5"><DownloadIcon /></span>}
+      {arrow && <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />}
     </a>
   )
 }
@@ -73,7 +75,7 @@ export function Reveal({ children, delay = 0, className, y = 24 }: { children: R
 export function Avatar({ src, size = 32, ring = true, pad, className }: { src: string; size?: number; ring?: boolean; pad?: boolean; className?: string }) {
   return (
     <span
-      className={clsx('inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-white', ring && 'ring-2 ring-white', className)}
+      className={clsx('inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-white', ring && 'ring-2 ring-canvas', className)}
       style={{ width: size, height: size }}
     >
       <img src={src} alt="" className={clsx(pad ? 'size-[60%] object-contain' : 'size-full object-cover')} loading="lazy" />
@@ -81,7 +83,7 @@ export function Avatar({ src, size = 32, ring = true, pad, className }: { src: s
   )
 }
 
-export function SectionTitle({ a, b, bClass = 'text-tan', className }: { a: string; b: string; bClass?: string; className?: string }) {
+export function SectionTitle({ a, b, bClass = 'text-grad', className }: { a: string; b: string; bClass?: string; className?: string }) {
   return (
     <h2 className={clsx('display-lg text-[44px] sm:text-[56px] lg:text-[66px]', className)}>
       <span className="block">{a}</span>

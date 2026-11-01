@@ -19,9 +19,9 @@ export default function Nav() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50" onMouseLeave={() => setOpen(null)}>
-      <div className={clsx('transition-all duration-300', scrolled || open ? 'border-b border-line bg-white/85 backdrop-blur-xl' : 'border-b border-transparent bg-transparent')}>
+      <div className={clsx('transition-all duration-300', scrolled || open ? 'border-b border-line bg-canvas/75 backdrop-blur-xl' : 'border-b border-transparent bg-transparent')}>
         <div className="mx-auto flex h-16 max-w-[1440px] items-center px-5 sm:px-10 lg:px-[100px]">
-          <Logo className="text-[21px]" />
+          <Logo className="text-[20px]" />
           <nav className="ml-12 hidden items-center gap-1 lg:flex">
             {nav.map((g) => (
               <button key={g.label} type="button" onMouseEnter={() => setOpen(g.label)} onClick={() => setOpen(open === g.label ? null : g.label)}
@@ -35,7 +35,7 @@ export default function Nav() {
           <div className="ml-auto hidden items-center gap-2 lg:flex">
             <Button variant="ghost" className="font-semibold">Sign in</Button>
             <Button variant="outline">Book a demo</Button>
-            <Button apple download>Download</Button>
+            <Button arrow>Get early access</Button>
           </div>
           <button type="button" className="ml-auto rounded-lg p-2 lg:hidden" aria-label="Menu" onClick={() => setMobile((m) => !m)}>
             {mobile ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -46,15 +46,15 @@ export default function Nav() {
       <AnimatePresence>
         {group && (
           <motion.div key="mega" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}
-            className="absolute inset-x-0 hidden border-b border-line bg-white/95 shadow-[0_24px_48px_-24px_rgba(27,23,18,.25)] backdrop-blur-xl lg:block">
+            className="absolute inset-x-0 hidden border-b border-line bg-[#0f0c1c]/95 shadow-[0_24px_48px_-24px_rgba(0,0,0,.6)] backdrop-blur-xl lg:block">
             <div className="mx-auto grid max-w-[1440px] grid-cols-4 gap-x-6 gap-y-2 px-[100px] py-8">
               <div className="col-span-1 pr-6">
                 <div className="text-[11px] font-semibold tracking-[0.14em] text-muted uppercase">{group.label}</div>
-                <p className="display-lg mt-3 text-[26px]">Everything your team and agents need, in one place.</p>
+                <p className="display-lg mt-3 text-[26px]">Intelligent commerce for a more human world.</p>
               </div>
               <div className="col-span-3 grid grid-cols-3 gap-2">
                 {group.items.map((it) => (
-                  <a key={it.title} href="#" className="rounded-xl p-3 transition hover:bg-canvas">
+                  <a key={it.title} href="#" className="rounded-xl p-3 transition hover:bg-white/5">
                     <div className="text-[14px] font-semibold">{it.title}</div>
                     {it.desc && <div className="mt-1 text-[13px] text-ink-soft">{it.desc}</div>}
                   </a>
@@ -68,14 +68,14 @@ export default function Nav() {
       <AnimatePresence>
         {mobile && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-b border-line bg-white lg:hidden">
+            className="overflow-hidden border-b border-line bg-canvas lg:hidden">
             <div className="flex flex-col gap-1 px-5 py-4">
               {[...nav.map((g) => g.label), 'Pricing'].map((l) => (
                 <a key={l} href="#" className="rounded-lg px-2 py-3 text-[16px] font-medium">{l}</a>
               ))}
               <div className="mt-3 grid grid-cols-2 gap-2">
                 <Button variant="outline">Book a demo</Button>
-                <Button apple>Download</Button>
+                <Button arrow>Get early access</Button>
               </div>
             </div>
           </motion.div>

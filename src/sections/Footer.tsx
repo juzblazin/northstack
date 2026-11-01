@@ -1,18 +1,20 @@
 import { Button, HavenMark, Logo, Reveal } from '../components/ui'
+import WaveField from '../components/WaveField'
 import { brand, footerCols, legal } from '../data'
 
 export function CTA() {
   return (
     <section className="px-3 sm:px-[60px]">
-      <div className="paper relative mx-auto max-w-[1320px] overflow-hidden rounded-[40px] bg-peach px-6 py-24 text-center">
-        <div className="pointer-events-none absolute -top-32 left-1/2 h-80 w-[70%] -translate-x-1/2 rounded-full bg-white/30 blur-3xl" />
-        <Reveal>
-          <h2 className="display-lg text-[44px] sm:text-[66px]">Build your company workspace.</h2>
+      <div className="relative mx-auto max-w-[1320px] overflow-hidden rounded-[40px] border border-white/10 bg-[radial-gradient(100%_100%_at_70%_20%,#5a2dda,#26135f_55%,#0d0a1f)] px-6 py-28 text-center">
+        <WaveField className="pointer-events-none absolute inset-0 size-full opacity-70" intensity={0.8} />
+        <Reveal className="relative">
+          <h2 className="display-lg text-[44px] sm:text-[66px]">Every visitor,<br /><span className="text-grad">a different store.</span></h2>
+          <p className="mx-auto mt-6 max-w-[520px] text-[17px] text-white/75">Dynamic storefronts built for the AI era. One platform. A million experiences.</p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button size="lg" apple download>Download for macOS</Button>
-            <Button size="lg" variant="outline">Start free on the web</Button>
+            <Button size="lg" variant="light" arrow>Get early access</Button>
+            <Button size="lg" variant="outline">Book a demo</Button>
           </div>
-          <p className="mt-5 text-[14px] text-ink-soft">Or pick a build: <a href="#" className="font-semibold text-ink">Apple silicon</a> or <a href="#" className="font-semibold text-ink">Intel</a></p>
+          <p className="mt-5 text-[14px] text-white/70">Works with <b className="font-semibold text-white">Shopify</b>, <b className="font-semibold text-white">Webflow</b> and custom stores.</p>
         </Reveal>
       </div>
     </section>
@@ -29,7 +31,7 @@ export function Footer() {
       <div className="mx-auto max-w-[1440px] px-5 sm:px-10 lg:px-[100px]">
         <div className="wavy-line" />
         <div className="mt-12 flex flex-col gap-6 md:flex-row md:items-center">
-          <Logo className="text-[30px]" />
+          <Logo className="text-[26px]" />
           <p className="text-[17px] text-ink-soft md:ml-8">{brand.tagline}</p>
           <div className="flex gap-5 text-ink md:ml-auto">{[X, In, Ig].map((I, i) => <a key={i} href="#" className="transition hover:opacity-60"><I /></a>)}</div>
         </div>
@@ -47,9 +49,9 @@ export function Footer() {
           <span>English <span className="mx-2">/</span> Español</span>
         </div>
       </div>
-      <div className="mx-auto flex max-w-[1440px] items-center gap-[4vw] px-5 pt-10 pb-0 text-[#e6dccb] select-none sm:px-10 lg:px-[100px]" aria-hidden="true">
-        <HavenMark className="size-[17vw] max-h-[260px] max-w-[260px] shrink-0" />
-        <span className="font-display text-[clamp(120px,24vw,370px)] leading-[0.8] font-semibold tracking-[-0.05em]">Haven</span>
+      <div className="mx-auto flex max-w-[1440px] items-center gap-[4vw] px-5 pt-10 pb-0 text-white/[0.05] select-none sm:px-10 lg:px-[100px]" aria-hidden="true">
+        <HavenMark className="size-[12vw] max-h-[180px] max-w-[180px] shrink-0" />
+        <span className="font-display text-[clamp(64px,14.5vw,220px)] leading-[0.8] font-extrabold tracking-[-0.02em] uppercase">Thamada</span>
       </div>
     </footer>
   )

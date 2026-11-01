@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import { AnimatePresence, motion, useInView } from 'motion/react'
-import { ChevronLeft, ChevronRight, FileText, Megaphone, Plus } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Megaphone, Plus, ShoppingBag } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import { agentGrid, customerLogos, face, heroAvatars, integrationNames, integrationRows, logo, security, testimonials, useCases } from '../data'
+import { agentGrid, customerLogos, face, heroAvatars, integrationNames, integrationRows, logo, mark, security, testimonials, useCases } from '../data'
 import { AppPanel, ChatThread, Composer, Mention } from '../components/mockups'
 import { Avatar, HavenMark, Logo, Reveal, SectionTitle } from '../components/ui'
 
@@ -12,25 +12,25 @@ export function AgentsGrid() {
   return (
     <section className={clsx(wrap, 'py-24 lg:py-32')}>
       <Reveal className="text-center">
-        <SectionTitle a="From separate AI chats" b="to shared company work." className="mx-auto" />
-        <p className="mx-auto mt-6 max-w-[780px] text-[18px] text-ink-soft">People and agents work from the same context, so the next teammate can pick up right where the work left off.</p>
+        <SectionTitle a="From one static store" b="to a million experiences." className="mx-auto" />
+        <p className="mx-auto mt-6 max-w-[780px] text-[18px] text-ink-soft">Most storefronts show every visitor the same page. Thamada builds one that adapts, converses and grows with each customer.</p>
       </Reveal>
       <div className="mx-auto mt-16 grid max-w-[980px] gap-2.5 md:grid-cols-[1fr_1.75fr]">
         {agentGrid.map((c, i) => (
           <Reveal key={i} delay={i * 0.08} className={clsx(i < 2 ? 'md:h-[400px]' : 'md:h-[250px]')}>
-            <div className={clsx('group relative flex h-full min-h-[220px] flex-col rounded-[28px] p-5 transition-transform duration-500 hover:-translate-y-1', c.featured ? 'bg-[#dfe3df]' : 'bg-[#ebe3d6]')}>
-              <div className={clsx('text-[11px] font-semibold tracking-[0.12em] uppercase', c.featured ? 'text-slate' : 'text-muted')}>{c.k[0]} <span className="mx-1">·</span> {c.k[1]}</div>
+            <div className={clsx('group relative flex h-full min-h-[220px] flex-col rounded-[28px] p-5 transition-transform duration-500 hover:-translate-y-1', c.featured ? 'bg-[linear-gradient(140deg,#5a2dda,#7f5cff_60%,#b794ff)] shadow-[0_30px_80px_-30px_rgba(127,92,255,.8)]' : 'border border-line bg-surface')}>
+              <div className={clsx('text-[11px] font-semibold tracking-[0.12em] uppercase', c.featured ? 'text-white/80' : 'text-muted')}>{c.k[0]} <span className="mx-1">·</span> {c.k[1]}</div>
               {c.featured ? (
                 <div className="flex flex-1 flex-col items-center justify-center gap-4 py-8">
-                  <Logo className="pointer-events-none text-[56px]" markClass="mr-2" />
+                  <Logo className="pointer-events-none text-[44px] text-white" />
                   <div className="flex -space-x-2">{heroAvatars.slice(0, 6).map((a, j) => <Avatar key={j} src={a.src} pad={a.pad} size={30} />)}</div>
-                  <p className="text-center text-[17px] font-medium text-slate">Bring any agent.<br />Work as the whole team.</p>
+                  <p className="text-center text-[17px] font-medium text-white/90">One site.<br />Infinite experiences.</p>
                 </div>
               ) : (
                 <div className="flex flex-1 flex-wrap content-center items-center justify-center gap-x-6 gap-y-4 py-6">
                   {c.items!.map((it) => (
                     <div key={it.n} className="flex flex-col items-center gap-2 grayscale-[.2] transition group-hover:grayscale-0">
-                      <span className="flex size-9 items-center justify-center rounded-lg bg-white/70"><img src={it.l} alt="" className="size-6 object-contain" /></span>
+                      <span className="flex size-10 items-center justify-center rounded-xl bg-white"><img src={it.l} alt="" className="size-6 object-contain" /></span>
                       <span className="text-[13px] text-ink-soft">{it.n}</span>
                     </div>
                   ))}
@@ -61,24 +61,24 @@ export function Testimonials() {
   const t = testimonials
   return (
     <section className={clsx(wrap, 'pt-16 pb-24 lg:pb-32')}>
-      <Reveal className="text-center"><SectionTitle a="See what teams are" b="building with Haven." /></Reveal>
+      <Reveal className="text-center"><SectionTitle a="Stores that feel" b="made for every shopper." /></Reveal>
       <div className="mx-auto mt-16 hidden max-w-[1100px] gap-6 md:grid md:grid-cols-2">
         {t.map((q, k) => (
           <Reveal key={k} delay={(k % 2) * 0.1} y={40}>
-            <figure className="flex h-full flex-col rounded-[32px] border border-black/5 p-8 shadow-[0_20px_40px_-24px_rgba(90,50,20,.35)] transition-transform duration-500 hover:-translate-y-1.5 hover:rotate-[-.4deg]" style={{ background: q.bg }}>
+            <figure className="flex h-full flex-col rounded-[32px] border border-black/5 p-8 shadow-[0_30px_60px_-30px_rgba(127,92,255,.6)] transition-transform duration-500 hover:-translate-y-1.5 hover:rotate-[-.4deg]" style={{ background: q.bg, color: q.fg }}>
               <div className="font-display text-[22px] font-bold tracking-tight">{q.org}</div>
-              <blockquote className="display-lg mt-6 text-[24px] leading-[1.3] lg:text-[27px]">{q.quote}</blockquote>
-              <figcaption className="mt-auto pt-8"><div className="text-[14px] font-semibold">{q.name}</div><div className="mt-2 text-[13px] text-ink-soft">{q.role}</div></figcaption>
+              <blockquote className="mt-6 font-display text-[22px] leading-[1.35] font-medium tracking-[-0.01em] lg:text-[25px]">{q.quote}</blockquote>
+              <figcaption className="mt-auto pt-8"><div className="text-[14px] font-semibold">{q.name}</div><div className="mt-2 text-[13px] opacity-70">{q.role}</div></figcaption>
             </figure>
           </Reveal>
         ))}
       </div>
       <div className="mt-10 md:hidden">
         <AnimatePresence mode="wait">
-          <motion.figure key={i} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} className="rounded-[28px] p-7" style={{ background: t[i].bg }}>
+          <motion.figure key={i} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} className="rounded-[28px] p-7" style={{ background: t[i].bg, color: t[i].fg }}>
             <div className="font-display text-[20px] font-bold">{t[i].org}</div>
-            <blockquote className="display-lg mt-5 text-[22px] leading-[1.3]">{t[i].quote}</blockquote>
-            <figcaption className="mt-6 text-[14px] font-semibold">{t[i].name}<div className="mt-1 font-normal text-ink-soft">{t[i].role}</div></figcaption>
+            <blockquote className="mt-5 font-display text-[20px] leading-[1.35] font-medium">{t[i].quote}</blockquote>
+            <figcaption className="mt-6 text-[14px] font-semibold">{t[i].name}<div className="mt-1 font-normal opacity-70">{t[i].role}</div></figcaption>
           </motion.figure>
         </AnimatePresence>
         <div className="mt-5 flex items-center justify-center gap-4 text-[14px]">
@@ -92,10 +92,10 @@ export function Testimonials() {
 }
 
 const roomMsgs = [
-  { who: 'Mira', f: face('f1'), body: <>Team plan goes live Friday. <Mention>Scout</Mention> how do our three closest competitors price team seats?</> },
-  { who: 'Scout', role: 'Research', f: face('f5'), agent: true, body: <>All three charge per seat, and two keep SSO for their top tier. Table is in the room. <Mention>Claude Code</Mention> it’s ready for the comparison row.</>, file: true },
-  { who: 'Claude Code', role: 'Engineering', f: logo('claude'), pad: true, body: <>Added the comparison row to the pricing page and opened a preview. <Mention>Mira</Mention> want to take a look?</> },
-  { who: 'Mira', f: face('f1'), body: <>Looks great, ship it.</> },
+  { who: 'Maya', role: 'Shopper', f: face('f2'), body: <>I’m in Lisbon next week. I need something light that still works for dinner.</> },
+  { who: 'Stylist', role: 'Thamada agent', f: mark, agent: true, body: <>Lovely trip. I’ve pulled linen pieces that go from day to night, and your page now shows them first.</>, file: true },
+  { who: 'Inventory', role: 'Thamada agent', f: mark, agent: true, body: <>The sand linen blazer is in stock in M and ships tomorrow. <Mention>Checkout</Mention> it’s ready when she is.</> },
+  { who: 'Maya', role: 'Shopper', f: face('f2'), body: <>Perfect, adding the blazer.</> },
 ]
 
 function TeamRoom() {
@@ -108,14 +108,14 @@ function TeamRoom() {
     return () => clearTimeout(id)
   }, [inView, n])
   return (
-    <div ref={ref} className="mt-14 overflow-hidden rounded-[22px] bg-white shadow-[0_30px_60px_-30px_rgba(60,60,30,.35)]">
-      <div className="flex items-center gap-2 border-b border-black/8 px-5 py-4 text-[14px] font-semibold"><span className="flex size-5 items-center justify-center rounded-md bg-[#e3f2d6]"><Megaphone className="size-3 text-agent" /></span>team-plan-launch</div>
-      <div className="flex flex-wrap items-center gap-3 border-b border-black/8 bg-[#faf8f4] px-5 py-3 text-[12.5px] text-ink-soft">
-        <div className="flex -space-x-1.5">{[face('f1'), face('f2'), face('f5'), logo('claude'), logo('openai'), logo('devin')].map((s, i) => <Avatar key={i} src={s} size={24} pad={i > 2} />)}</div>
-        <span><b className="font-semibold text-ink">2</b> people, <b className="font-semibold text-ink">5</b> agents on</span>
-        {[['Haven', null], ['Claude Code', logo('claude')], ['Codex', logo('openai')], ['Devin', logo('devin')]].map(([n, l]) => (
+    <div ref={ref} className="light-ui mt-14 overflow-hidden rounded-[22px] bg-white shadow-[0_40px_100px_-30px_rgba(127,92,255,.55)]">
+      <div className="flex items-center gap-2 border-b border-black/8 px-5 py-4 text-[14px] font-semibold"><span className="flex size-5 items-center justify-center rounded-md bg-[#efe7ff]"><Megaphone className="size-3 text-agent" /></span>nova-apparel · live shopper chat</div>
+      <div className="flex flex-wrap items-center gap-3 border-b border-black/8 bg-[#f8f5ff] px-5 py-3 text-[12.5px] text-ink-soft">
+        <div className="flex -space-x-1.5">{[face('f2'), mark, logo('shopify'), logo('stripe'), logo('zendesk')].map((s, i) => <Avatar key={i} src={s} size={24} pad={i > 1} />)}</div>
+        <span><b className="font-semibold text-ink">1</b> shopper, <b className="font-semibold text-ink">3</b> agents on</span>
+        {[['Thamada', null], ['Shopify', logo('shopify')], ['Stripe', logo('stripe')], ['Zendesk', logo('zendesk')]].map(([n, l]) => (
           <span key={n as string} className="flex items-center gap-1.5 rounded-md border border-black/10 bg-white px-2 py-1 text-[12px] text-ink">
-            {l ? <img src={l} alt="" className="size-3.5" /> : <HavenMark className="size-3" />}{n}
+            {l ? <img src={l} alt="" className="size-3.5" /> : <HavenMark className="size-3 text-primary" />}{n}
           </span>
         ))}
       </div>
@@ -123,11 +123,11 @@ function TeamRoom() {
         <AnimatePresence>
           {roomMsgs.slice(0, n).map((m, i) => (
             <motion.div key={i} layout initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="flex gap-3">
-              <Avatar src={m.f} size={32} ring={false} pad={m.pad} className="border border-black/5" />
+              <Avatar src={m.f} size={32} ring={false} className="border border-black/5" />
               <div className="min-w-0">
-                <div className="mb-1.5 flex items-center gap-1.5 text-[12px]"><span className="font-semibold">{m.who}</span>{m.role && <span className="text-black/50">{m.role}</span>}{m.agent && <HavenMark className="size-3" />}</div>
+                <div className="mb-1.5 flex items-center gap-1.5 text-[12px]"><span className="font-semibold">{m.who}</span>{m.role && <span className="text-black/50">{m.role}</span>}{m.agent && <HavenMark className="size-3 text-primary" />}</div>
                 <div className="rounded-2xl bg-[#f1f0ee] px-3.5 py-2.5 text-[14px] leading-[1.6]">{m.body}</div>
-                {m.file && <div className="mt-2 inline-flex items-center gap-2 rounded-xl bg-[#f3e8d8] px-3 py-2 text-[13px]"><FileText className="size-4 text-black/50" /><b className="font-semibold">pricing-research.md</b><span className="text-black/50">3 pricing pages</span></div>}
+                {m.file && <div className="mt-2 inline-flex items-center gap-2 rounded-xl bg-[#f1ebff] px-3 py-2 text-[13px]"><ShoppingBag className="size-4 text-violet" /><b className="font-semibold">The Lisbon edit</b><span className="text-black/50">3 linen pieces</span></div>}
               </div>
             </motion.div>
           ))}
@@ -135,7 +135,7 @@ function TeamRoom() {
         {n < roomMsgs.length && inView && (
           <div className="flex items-center gap-1 pl-11 text-black/40">{[0, 1, 2].map((d) => <motion.span key={d} className="size-1.5 rounded-full bg-current" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1, delay: d * 0.15 }} />)}</div>
         )}
-        <Composer placeholder="Message team-plan-launch" className="mt-2" />
+        <Composer placeholder="Ask Nova Apparel anything…" className="mt-2" />
       </div>
     </div>
   )
@@ -144,10 +144,10 @@ function TeamRoom() {
 export function BringAgents() {
   return (
     <section className="px-3 sm:px-[60px]">
-      <div className="paper mx-auto max-w-[1320px] rounded-[40px] bg-sage px-5 pt-20 pb-16 sm:px-[72px] lg:pt-24 lg:pb-24">
+      <div className="paper relative mx-auto max-w-[1320px] overflow-hidden rounded-[40px] border border-line bg-[radial-gradient(90%_60%_at_85%_0%,rgba(127,92,255,.35),transparent_70%),#15111f] px-5 pt-20 pb-16 sm:px-[72px] lg:pt-24 lg:pb-24">
         <Reveal>
-          <SectionTitle a="The agents you already use." b="Working as one team." bClass="text-slate" />
-          <p className="mt-7 max-w-[580px] text-[17px] leading-[1.6] text-ink-soft">Claude Code, Codex and Devin join your rooms next to your teammates and Haven’s own agents. They share the room’s context, hand work to each other, and leave the final call to you.</p>
+          <SectionTitle a="Shoppers ask." b="Your store answers." />
+          <p className="mt-7 max-w-[580px] text-[17px] leading-[1.6] text-ink-soft">Thamada’s agents greet every visitor, answer in your brand voice, and reshape the page around what each shopper wants. When a human touch matters, they hand off to your team.</p>
         </Reveal>
         <TeamRoom />
       </div>
@@ -159,15 +159,15 @@ export function Integrations() {
   return (
     <section className="py-24 lg:py-32">
       <Reveal className={clsx(wrap, 'text-center')}>
-        <SectionTitle a="Your agents, connected" b="to the tools you use." />
-        <p className="mx-auto mt-6 max-w-[640px] text-[18px] text-ink-soft">Connect your team’s accounts so agents can act on real work, with access you control.</p>
+        <SectionTitle a="Connected to the" b="commerce stack you run on." />
+        <p className="mx-auto mt-6 max-w-[640px] text-[18px] text-ink-soft">Thamada plugs into your catalog, payments, CRM and support tools, with access you control.</p>
       </Reveal>
       <div className="mask-fade-x mt-14 flex flex-col gap-4 overflow-hidden">
         {integrationRows.map((row, r) => (
           <div key={r} className={clsx('flex w-max gap-10 hover:[animation-play-state:paused]', r % 2 ? 'animate-marquee-reverse' : 'animate-marquee')} style={{ ['--marquee-duration' as string]: `${50 + r * 8}s` }}>
             {[...row, ...row, ...row, ...row].map((s, i) => (
-              <span key={i} className="flex items-center gap-2.5 rounded-xl px-3 py-3 text-[15px] font-medium text-ink-soft transition hover:bg-white/60 hover:text-ink">
-                <img src={logo(s)} alt="" className="size-6 object-contain" loading="lazy" />{integrationNames[s]}
+              <span key={i} className="flex items-center gap-2.5 rounded-xl px-3 py-3 text-[15px] font-medium text-ink-soft transition hover:bg-white/5 hover:text-ink">
+                <span className="flex size-9 items-center justify-center rounded-xl bg-white"><img src={logo(s)} alt="" className="size-5 object-contain" loading="lazy" /></span>{integrationNames[s]}
               </span>
             ))}
           </div>
@@ -181,18 +181,18 @@ export function UseCases() {
   return (
     <section className="pt-10 pb-24">
       <div className={wrap}>
-        <Reveal><div className="max-w-[430px] border-b border-line pb-6 text-[15px] font-semibold">One workspace, every kind of work.</div></Reveal>
+        <Reveal><div className="max-w-[430px] border-b border-line pb-6 text-[15px] font-semibold">One platform, every part of the store.</div></Reveal>
       </div>
       <div className="mt-16 flex flex-col gap-28">
         {useCases.map((uc) => (
           <div key={uc.n} className="mx-auto grid max-w-[1440px] items-start gap-10 pl-5 sm:pl-10 lg:grid-cols-[486px_1fr] lg:pl-[100px]">
             <Reveal className="pr-5 lg:sticky lg:top-32 lg:pt-10">
               <div className="flex items-center gap-3 text-[15px]"><span className="font-mono text-muted">{uc.n}</span><span className="font-semibold">{uc.team}</span></div>
-              <h3 className="display-lg mt-5 text-[40px] lg:text-[52px]"><span className="text-slate">{uc.room}</span> {uc.rest}</h3>
+              <h3 className="display-lg mt-5 text-[40px] lg:text-[52px]"><span className="text-grad">{uc.room}</span> {uc.rest}</h3>
               <p className="mt-6 text-[17px] text-ink-soft">{uc.sub}</p>
             </Reveal>
             <Reveal y={50}>
-              <div className="mask-fade-b flex h-[560px] overflow-hidden rounded-l-[24px] bg-white shadow-[0_30px_60px_-30px_rgba(60,40,20,.3)]">
+              <div className="mask-fade-b flex h-[560px] overflow-hidden rounded-l-[24px] bg-white shadow-[0_40px_100px_-40px_rgba(127,92,255,.6)]">
                 <ChatThread uc={uc} className="w-full shrink-0 border-r border-black/8 sm:w-[310px]" />
                 <AppPanel app={uc.app} interactive className="m-2 hidden min-w-[560px] flex-1 sm:flex" />
               </div>
@@ -209,7 +209,7 @@ export function Security() {
     <section className={clsx(wrap, 'py-16')}>
       <Reveal>
         <div className="mx-auto grid max-w-[1100px] gap-10 rounded-[32px] border border-line bg-surface p-8 sm:p-10 md:grid-cols-[1fr_1.5fr] md:items-center">
-          <h2 className="display-lg text-[44px] sm:text-[56px]">Security &amp;<br />compliance.</h2>
+          <h2 className="display-lg text-[44px] sm:text-[56px]">Security &amp;<br /><span className="text-grad">privacy.</span></h2>
           <ul className="divide-y divide-line">
             {security.map((s) => <li key={s} className="py-6 text-[22px] first:pt-0 last:pb-0 sm:text-[24px]">{s}</li>)}
           </ul>
@@ -226,7 +226,7 @@ export function FAQ({ items }: { items: { q: string; a: string }[] }) {
   return (
     <section className={clsx(wrap, 'py-24 lg:py-32')}>
       <div className="mx-auto grid max-w-[1100px] gap-12 md:grid-cols-[1fr_1.6fr]">
-        <Reveal><h2 className="display-lg text-[48px] sm:text-[66px] md:sticky md:top-32">Good<br /><span className="text-[#8c7b68]">questions.</span></h2></Reveal>
+        <Reveal><h2 className="display-lg text-[48px] sm:text-[66px] md:sticky md:top-32">Good<br /><span className="text-grad">questions.</span></h2></Reveal>
         <div>
           {shown.map((f, i) => (
             <div key={f.q} className="border-b border-line">
@@ -242,7 +242,7 @@ export function FAQ({ items }: { items: { q: string; a: string }[] }) {
               </AnimatePresence>
             </div>
           ))}
-          {!all && <button type="button" onClick={() => setAll(true)} className="mt-6 rounded-full border border-line px-4 py-2 text-[15px] font-semibold transition hover:bg-white">Show all {items.length} questions</button>}
+          {!all && <button type="button" onClick={() => setAll(true)} className="mt-6 rounded-full border border-line px-4 py-2 text-[15px] font-semibold transition hover:bg-white/10">Show all {items.length} questions</button>}
         </div>
       </div>
     </section>
