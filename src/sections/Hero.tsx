@@ -2,7 +2,6 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import { Bell, ChevronDown, ChevronRight, Grid2x2, Hash, Lock, MessageCircle, PenSquare, Plus, Search, Users } from 'lucide-react'
 import { useRef } from 'react'
 import { brand, face, heroAvatars, mark, useCases } from '../data'
-import WaveField from '../components/WaveField'
 import { AppPanel, ChatThread } from '../components/mockups'
 import { Avatar, Button, HavenMark } from '../components/ui'
 
@@ -89,16 +88,12 @@ export default function Hero() {
 
   return (
     <section className="relative">
-      <div ref={ref} className="relative h-[420px] overflow-hidden bg-[radial-gradient(120%_90%_at_75%_35%,#3b1f9e_0%,#1d1150_38%,#0d0a1f_70%)] sm:h-[500px] lg:h-[550px]">
-        <motion.div style={{ y: imgY }} initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.6, ease }} className="absolute inset-0">
-          <WaveField className="size-full" />
-        </motion.div>
-        <motion.div initial={{ opacity: 0, scale: 0.8, rotate: -20 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 1.4, delay: 0.3, ease }}
-          className="absolute top-[22%] left-[8%] hidden text-white/90 drop-shadow-[0_0_40px_rgba(183,148,255,.8)] md:block">
-          <HavenMark className="size-[120px] animate-[spin_40s_linear_infinite] lg:size-[150px]" />
-        </motion.div>
+      <div ref={ref} className="relative h-[460px] overflow-hidden bg-[#3a2475] sm:h-[560px] lg:h-[640px]">
+        <motion.img src="/assets/hero-dancer.jpg" alt="Dancer in traditional Khmer costume, tinted Thamada purple" style={{ y: imgY }}
+          initial={{ opacity: 0, scale: 1.06 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.6, ease }}
+          className="absolute inset-0 size-full object-cover object-[55%_0%]" />
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-canvas/70 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-canvas to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-canvas via-canvas/60 to-transparent" />
       </div>
 
       <div className="relative mx-auto max-w-[1440px] px-5 pt-12 pb-16 sm:px-10 lg:px-[100px] lg:pt-14">
