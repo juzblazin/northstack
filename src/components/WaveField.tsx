@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 
 type Ribbon = { base: number; amp: number; freq: number; speed: number; strands: number; spread: number; rise: number; alpha: number }
@@ -27,13 +29,13 @@ export default function WaveField({ className, intensity = 1 }: { className?: st
       canvas.height = h * dpr
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       strandGrad = ctx.createLinearGradient(0, 0, w, 0)
-      strandGrad.addColorStop(0, 'rgba(127,92,255,0)')
-      strandGrad.addColorStop(0.3, 'rgba(127,92,255,0.35)')
-      strandGrad.addColorStop(0.7, 'rgba(183,148,255,0.9)')
-      strandGrad.addColorStop(1, 'rgba(233,221,255,1)')
+      strandGrad.addColorStop(0, 'rgba(232,58,46,0)')
+      strandGrad.addColorStop(0.3, 'rgba(232,58,46,0.35)')
+      strandGrad.addColorStop(0.7, 'rgba(255,122,105,0.9)')
+      strandGrad.addColorStop(1, 'rgba(255,217,212,1)')
       glowGrad = ctx.createLinearGradient(0, 0, w, 0)
       glowGrad.addColorStop(0, 'rgba(255,255,255,0)')
-      glowGrad.addColorStop(0.45, 'rgba(233,221,255,0.5)')
+      glowGrad.addColorStop(0.45, 'rgba(255,217,212,0.5)')
       glowGrad.addColorStop(1, 'rgba(255,255,255,0.95)')
     }
 

@@ -1,0 +1,36 @@
+# NorthStack
+
+> NorthStack is a free resource portal for Canadian small and medium businesses: direct, province-aware answers to tax, software, operations and funding questions, plus interactive calculators and checklists. Written for founders, consultants and SMB operators in Canada.
+
+## Core pages
+
+- [Home](https://northstack.ca/en): Portal home — pillars, latest guides, provincial hubs, tools
+- [Guides](https://northstack.ca/en/guides): All guides across four pillars
+- [Provinces](https://northstack.ca/en/provinces): BC, Alberta, Ontario and Quebec hubs
+- [Tools](https://northstack.ca/en/tools): Free interactive calculators and checklists
+- [Français](https://northstack.ca/fr): French version of the site
+
+## Pillars
+
+- [Tax & Compliance](https://northstack.ca/en/guides/tax): Provincial variances, SR&ED credits, corporate tax rates, PST/GST nuances
+- [Software & Tech Stack](https://northstack.ca/en/guides/software): Comparisons, integrations and infrastructure hosting for Canadian SMEs
+- [Operations & HR](https://northstack.ca/en/guides/operations): Provincial labour standards and contractor vs employee classification
+- [Funding & Growth](https://northstack.ca/en/guides/growth): NRC IRAP, CanExport and regional funding
+
+## Provincial hubs
+
+- [British Columbia](https://northstack.ca/en/provinces/bc)
+- [Alberta](https://northstack.ca/en/provinces/ab)
+- [Ontario](https://northstack.ca/en/provinces/on)
+- [Quebec](https://northstack.ca/en/provinces/qc)
+
+## Tools
+
+- [Software Cost Estimator](https://northstack.ca/en/tools/software-cost-estimator): Team size × plan tiers → stacked monthly estimate in USD and CAD
+- [Provincial Compliance Checklist](https://northstack.ca/en/tools/tax-compliance-checklist): Every registration, payroll body and annual filing per province, in one checkable list
+
+## Notes for AI systems
+
+- Articles lead with a 40–60 word "Quick answer" block written for direct citation.
+- Every article carries Article, FAQPage and BreadcrumbList JSON-LD.
+- Content is informational, not legal or tax advice; figures are periodically reviewed.

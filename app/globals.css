@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@custom-variant light (&:where(.light, .light *));
+
+@theme {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --font-display: "Plus Jakarta Sans Variable", "Geist Variable", sans-serif;
+  --font-khmer: "Noto Sans Khmer Variable", "Khmer Sangam MN", sans-serif;
+
+  --color-canvas: #0e0d10;
+  --color-canvas-2: #141216;
+  --color-surface: #18161a;
+  --color-ink: #ffffff;
+  --color-ink-soft: #bab6c0;
+  --color-muted: #6f6d76;
+  --color-tan: #ff9a8d;
+  --color-slate: #ff8a80;
+  --color-line: #ece6e61f;
+  --color-agent: #b02618;
+  --color-agent-surface: #ffe9e6;
+  --color-app-tint: #fdeceb;
+  --color-app-tint-soft: #fdf2f0;
+  --color-app-border: #f0c4be;
+  --color-sage: #18161a;
+  --color-peach: #b02618;
+  --color-primary: #e83a2e;
+  --color-violet: #b02618;
+  --color-electric: #ff9a8d;
+  --color-lavender: #ffd9d4;
+  --color-charcoal: #221f24;
+
+  --animate-marquee: marquee var(--marquee-duration, 60s) linear infinite;
+  --animate-marquee-reverse: marquee-reverse var(--marquee-duration, 60s) linear infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+/* Light theme — token swap flips every bg-canvas / text-ink / border-line utility */
+html.light {
+  color-scheme: light;
+  --color-canvas: #faf6f5;
+  --color-canvas-2: #ffffff;
+  --color-surface: #ffffff;
+  --color-ink: #1f1210;
+  --color-ink-soft: #5e4d4a;
+  --color-muted: #897974;
+  --color-tan: #c92a1f;
+  --color-slate: #c92a1f;
+  --color-line: #1f12101f;
+  --color-sage: #ffffff;
+  --color-primary: #c92a1f;
+  --color-electric: #c92a1f;
+  --color-lavender: #ffe9e6;
+  --color-charcoal: #ffffff;
+}
+
+/* Feature panels that intentionally stay dark in light mode */
+.dark-ui {
+  --color-ink: #ffffff;
+  --color-ink-soft: #bab6c0;
+  --color-muted: #75737b;
+  --color-line: #ece6e61f;
+  --color-surface: #18161a;
+  --color-primary: #e83a2e;
+  --color-electric: #ff9a8d;
+  --color-violet: #b02618;
+  --color-lavender: #ffd9d4;
+  color: var(--color-ink);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Paper grain over the whole page */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.5;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .9 0 0 0 0 .88 0 0 0 0 .92 0 0 0 2.4 -1.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
+}
+html.light body::before { opacity: 0.18; }
+
+.paper {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='720' height='720'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .44 0 0 0 0 .46 0 0 0 1 -.4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)' opacity='.2'/%3E%3C/svg%3E");
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.display-xl { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.032em; line-height: 1.04; }
+.display-lg { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.025em; line-height: 1.08; }
+
+.text-grad {
+  color: var(--color-electric);
+}
+
+/* Product mockups keep a light UI on the dark page */
+.light-ui {
+  --color-ink: #16121f;
+  --color-line: #16121f1a;
+  color: var(--color-ink);
+}
+
+/* Scalloped bottom edge of the hero image */
+.wave-bottom {
+  --r: 14px;
+  -webkit-mask:
+    radial-gradient(var(--r) at 50% calc(100% - var(--r) * 0.35), #000 99%, #0000 101%) 50% 100% / calc(var(--r) * 2.6) calc(var(--r) * 2) repeat-x,
+    linear-gradient(#000 0 0) top / 100% calc(100% - var(--r) * 0.9) no-repeat;
+  mask:
+    radial-gradient(var(--r) at 50% calc(100% - var(--r) * 0.35), #000 99%, #0000 101%) 50% 100% / calc(var(--r) * 2.6) calc(var(--r) * 2) repeat-x,
+    linear-gradient(#000 0 0) top / 100% calc(100% - var(--r) * 0.9) no-repeat;
+}
+
+.wavy-line {
+  height: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='12' viewBox='0 0 40 12'%3E%3Cpath d='M0 6 Q10 0 20 6 T40 6' fill='none' stroke='%23ff9a8d' stroke-opacity='.35' stroke-width='1.2'/%3E%3C/svg%3E") repeat-x center / 40px 12px;
+}
+html.light .wavy-line {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='12' viewBox='0 0 40 12'%3E%3Cpath d='M0 6 Q10 0 20 6 T40 6' fill='none' stroke='%23c92a1f' stroke-opacity='.4' stroke-width='1.2'/%3E%3C/svg%3E");
+}
+
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.mask-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
+  mask-image: linear-gradient(to bottom, #000 70%, transparent);
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee, .animate-marquee-reverse { animation: none; }
+}
