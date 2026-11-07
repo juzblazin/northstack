@@ -2,7 +2,6 @@
 
 import clsx from 'clsx'
 import Link from 'next/link'
-import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
 import type { CSSProperties, ReactNode } from 'react'
 
@@ -62,18 +61,8 @@ export function Button({ children, variant = 'dark', size = 'sm', className, hre
   )
 }
 
-export function Reveal({ children, delay = 0, className, y = 24 }: { children: ReactNode; delay?: number; className?: string; y?: number }) {
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '0px 0px -80px 0px' }}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  )
+export function Reveal({ children, className }: { children: ReactNode; delay?: number; className?: string; y?: number }) {
+  return <div className={className}>{children}</div>
 }
 
 export function Avatar({ src, size = 32, ring = true, pad, className }: { src: string; size?: number; ring?: boolean; pad?: boolean; className?: string }) {

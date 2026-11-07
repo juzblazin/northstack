@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, BookOpen, Calculator, CheckCircle2, ListChecks } from 'lucide-react'
 import ProvinceFlag from '../../src/components/portal/ProvinceFlag'
-import WaveField from '../../src/components/WaveField'
 import { Reveal } from '../../src/components/ui'
 import { ArticleCard, PillarCard, SectionHeading } from '../../src/components/portal/Cards'
 import Faq from '../../src/components/portal/Faq'
@@ -47,7 +46,6 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       <section className="relative">
         <div className="pointer-events-none absolute inset-0 -z-10 h-[560px] overflow-hidden sm:h-[640px]">
           <div className="absolute inset-0 bg-[radial-gradient(70%_80%_at_55%_20%,rgba(232,58,46,.28),rgba(14,13,16,.9))] light:bg-[radial-gradient(70%_80%_at_55%_20%,rgba(232,58,46,.14),rgba(250,246,245,.92))]" />
-          <WaveField className="size-full opacity-80" intensity={0.9} />
           <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-canvas via-canvas/60 to-transparent" />
         </div>
         <div className={`${wrap} pt-40 pb-20 text-center sm:pt-48`}>
@@ -83,7 +81,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {pillarKeys.map((k, i) => (
             <Reveal key={k} delay={i * 0.07} className="h-full">
-              <PillarCard p={pillars[k]} count={articles.filter((a) => a.pillar === k && !a.province).length} />
+              <PillarCard p={pillars[k]} />
             </Reveal>
           ))}
         </div>
@@ -94,8 +92,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading title={lang === 'fr' ? 'Nouveaux guides.' : 'Latest guides.'} />
-            <Link href={l('/guides')} className="group mb-1 inline-flex items-center gap-1.5 text-[14px] font-semibold text-primary transition hover:text-electric">
-              {t(lang, 'All guides')} <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+            <Link href={l('/guides')} className="mb-1 inline-flex items-center gap-1.5 text-[14px] font-semibold text-ink">
+              {t(lang, 'All guides')} <ArrowRight className="size-4 text-primary" aria-hidden="true" />
             </Link>
           </div>
         </Reveal>
@@ -113,8 +111,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading title={lang === 'fr' ? 'Les règles changent à la frontière.' : 'Rules change at the border.'} sub={lang === 'fr' ? 'Taxes de vente, organismes de paie et subventions sont provinciaux. Ces hubs remettent les règles au clair.' : 'Sales tax, payroll bodies and grant programs are provincial. These hubs keep the rules straight.'} />
-            <Link href={l('/provinces')} className="group mb-1 inline-flex items-center gap-1.5 text-[14px] font-semibold text-primary transition hover:text-electric">
-              {t(lang, 'All provinces')} <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+            <Link href={l('/provinces')} className="mb-1 inline-flex items-center gap-1.5 text-[14px] font-semibold text-ink">
+              {t(lang, 'All provinces')} <ArrowRight className="size-4 text-primary" aria-hidden="true" />
             </Link>
           </div>
         </Reveal>
@@ -134,8 +132,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                     <div className="flex justify-between"><dt>{lang === 'fr' ? 'Taux PME' : 'Small biz rate'}</dt><dd className="font-medium text-ink">{p.smallBizRate}</dd></div>
                     <div className="flex justify-between"><dt>{lang === 'fr' ? 'Salaire min' : 'Min wage'}</dt><dd className="font-medium text-ink">{p.minWage}</dd></div>
                   </dl>
-                  <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-[13px] font-semibold text-primary transition group-hover:text-electric">
-                    {lang === 'fr' ? 'Ouvrir le hub' : 'Open hub'} <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-[13px] font-semibold text-ink">
+                    {lang === 'fr' ? 'Ouvrir le hub' : 'Open hub'} <ArrowRight className="size-3.5 text-primary" aria-hidden="true" />
                   </span>
                 </Link>
               </Reveal>
@@ -158,7 +156,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <Link key={tool.href} href={tool.href} className="group flex items-center gap-7 rounded-[28px] border border-line bg-surface p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40">
               <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-primary/20 text-electric"><tool.I className="size-6" aria-hidden="true" /></span>
               <div className="flex-1"><h3 className="display-lg text-[26px]">{tool.t}</h3><p className="mt-2 max-w-[560px] text-[14.5px] leading-[1.65] text-ink-soft">{tool.d}</p></div>
-              <span className="hidden shrink-0 items-center gap-1.5 text-[14px] font-semibold text-primary transition group-hover:text-electric sm:inline-flex">{t(lang, 'Open tool')} <ArrowRight className="size-4" aria-hidden="true" /></span>
+              <span className="hidden shrink-0 items-center gap-1.5 text-[14px] font-semibold text-ink sm:inline-flex">{t(lang, 'Open tool')} <ArrowRight className="size-4 text-primary" aria-hidden="true" /></span>
             </Link>
           ))}
         </div>

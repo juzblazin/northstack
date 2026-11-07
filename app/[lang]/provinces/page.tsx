@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { provinces, provinceCodes } from '../../../src/lib/provinces'
-import { getArticlesByProvince } from '../../../src/lib/articles'
 import { SectionHeading } from '../../../src/components/portal/Cards'
 import Breadcrumbs from '../../../src/components/portal/Breadcrumbs'
 import JsonLd from '../../../src/components/portal/JsonLd'
@@ -43,9 +42,8 @@ export default async function ProvincesPage() {
   )
 }
 
-async function ProvinceCard({ code }: { code: (typeof provinceCodes)[number] }) {
+function ProvinceCard({ code }: { code: (typeof provinceCodes)[number] }) {
   const p = provinces[code]
-  const articles = await getArticlesByProvince(code)
   return (
     <Link
       href={`/provinces/${code}`}
@@ -70,8 +68,8 @@ async function ProvinceCard({ code }: { code: (typeof provinceCodes)[number] }) 
           <div className="mt-1 font-semibold">{p.minWage}</div>
         </div>
       </div>
-      <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[13.5px] font-semibold text-primary transition group-hover:text-electric">
-        {articles.length} {articles.length === 1 ? 'guide' : 'guides'} + checklist <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+      <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[13.5px] font-semibold text-ink">
+        Open hub <ArrowRight className="size-3.5 text-primary" aria-hidden="true" />
       </span>
     </Link>
   )

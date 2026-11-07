@@ -52,8 +52,8 @@ export default function ToolsPage() {
             </span>
             <h2 className="display-lg mt-5 text-[26px]">{t.title}</h2>
             <p className="mt-3 text-[14.5px] leading-[1.65] text-ink-soft">{t.desc}</p>
-            <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[13.5px] font-semibold text-primary transition group-hover:text-electric">
-              Open tool <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+            <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[13.5px] font-semibold text-ink">
+              Open tool <ArrowRight className="size-3.5 text-primary" aria-hidden="true" />
             </span>
           </Link>
         ))}
